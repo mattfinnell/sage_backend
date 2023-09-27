@@ -9,8 +9,9 @@
 		"ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {},
 		"ghcr.io/devcontainers-contrib/features/black:2": {},
 		"ghcr.io/devcontainers-contrib/features/coverage-py:2": {},
-		"ghcr.io/devcontainers-contrib/features/pipenv:2": {},
-		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {}
+		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
+		"ghcr.io/devcontainers-contrib/features/pdm:2": {}
+
 	},
 	"customizations": {
 		"vscode": {
@@ -29,8 +30,16 @@
 				"editor.codeActionsOnSave": {
 					"source.organizeImports": true
 				},
+				"terminal.integrated.defaultProfile.linux": "bash",
+				"terminal.integrated.profiles.linux": {
+					"bash": {
+						"path": "bash",
+						"args": ["-l"]
+					}
+				},
+				"python.venvPath": "/workspaces/backend/.venv",
 				"python.languageServer": "Pylance",
-				"python.defaultInterpreterPath": "/home/vscode/.local/share/virtualenvs/backend-abQrVkYW/bin/python",
+				"python.defaultInterpreterPath": "/workspaces/backend/.venv/bin/python",
 				"python.analysis.autoImportCompletions": true,
 				"python.analysis.inlayHints.functionReturnTypes": false,
 				"python.analysis.inlayHints.variableTypes": true, 

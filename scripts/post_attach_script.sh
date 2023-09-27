@@ -3,11 +3,13 @@ pg_ctl start -l .out/postgres.out
 sudo service redis-server start
 
 # Install Python Dependencies
-pipenv install
+pdm install
+
+# Make Migrations
+pdm run --venv in-project python manage.py makemigrations 
+pdm run --venv in-project python manage.py migrate
 
 # Create Redis Workers
-pipenv run python manage.py rqworker default &
+# pdm run --venv in-project python manage.py rqworker default &
 
-# Run Django Migrations
-pipenv run python manage.py makemigrations 
-pipenv run python manage.py migrate
+pdm run --venv in-project python manage.py runserver
