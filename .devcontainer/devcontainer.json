@@ -1,0 +1,79 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Sage Backend",
+	"image": "mcr.microsoft.com/devcontainers/python:3.10-bookworm",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {},
+		"ghcr.io/devcontainers-contrib/features/black:2": {},
+		"ghcr.io/devcontainers-contrib/features/coverage-py:2": {},
+		"ghcr.io/devcontainers-contrib/features/pipenv:2": {},
+		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.pylance",
+				"ms-python.black-formatter",
+				"esbenp.prettier-vscode",
+				"ckolkman.vscode-postgres",
+				"oderwat.indent-rainbow",
+				"aaron-bond.better-comments"
+			], 
+			"settings": {
+				"editor.formatOnSave": true,
+				"editor.defaultFormatter": "ms-python.black-formatter", 
+				"editor.codeActionsOnSave": {
+					"source.organizeImports": true
+				},
+				"python.languageServer": "Pylance",
+				"python.defaultInterpreterPath": "/home/vscode/.local/share/virtualenvs/backend-abQrVkYW/bin/python",
+				"python.analysis.autoImportCompletions": true,
+				"python.analysis.inlayHints.functionReturnTypes": false,
+				"python.analysis.inlayHints.variableTypes": true, 
+				"python.analysis.typeCheckingMode": "basic",
+				"python.analysis.diagnosticMode": "openFilesOnly",
+				"python.analysis.packageIndexDepths": [
+					{
+						"name": "django",
+						"depth": 2
+					},
+					{
+						"name": "djangorestframework",
+						"depth": 2
+					}
+				],
+				"indentRainbow.indicatorStyle": "light",
+				"indentRainbow.lightIndicatorStyleLineWidth": 1,
+				"indentRainbow.colors": [
+					"rgba(255,255,64,0.2)",
+					"rgba(127,255,127,0.2)",
+					"rgba(255,127,255,0.2)",
+					"rgba(79,236,236,0.2)"
+				],
+				"[json]": {
+					"editor.quickSuggestions": {
+						"strings": true
+					},
+					"editor.defaultFormatter": "esbenp.prettier-vscode"
+				}
+			}
+		}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [8000],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "bash scripts/post_create_script.sh",
+	"postAttachCommand": "bash scripts/post_attach_script.sh"
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
